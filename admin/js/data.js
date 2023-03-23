@@ -18,7 +18,6 @@ telp.innerHTML = " " + userForm[0]["telp"]
 alamat.innerHTML = " " + userForm[0]["alamat"]
 jk.innerHTML = "   " + userForm[0]["dot-1"]
 jk.innerHTML = "   " + userForm[0]["dot-2"]
-jk.innerHTML = "   " + userForm[0]["dot-3"]
 let hobiValue = ""
 if (userForm[0]["hll"]) {
   hobiValue += userForm[0]["hll"] + " , "
