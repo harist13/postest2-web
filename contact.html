@@ -190,6 +190,7 @@
 	 display: flex;
 	 width: 80%;
 	 margin: 14px 0 ;
+	 padding-right: 38rem;
 	 justify-content: space-between;
    }
    form .category label{
@@ -327,6 +328,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="contact.html">Contact Us</a>
                         </li>
+						<li class="nav-item">
+                            <a class="nav-link" href="login.html">Login</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -389,7 +393,7 @@
 				<h1 align="center">Silakan mendaftar jika berminat</h1>
 				
 				<br>
-				<form action="#" id="frm">
+				<form method="post" enctype="" id="form">
 				  <div class="user-details">
 					<div class="input-box">
 					  <span class="details">nama</span>
@@ -397,14 +401,14 @@
 					</div>
 					
 					<div class="input-box">
-					  <span class="details">Email</span>
-					  <input type="text" id="email" placeholder="masukan emailmu">
+					  <span class="details">email</span>
+					  <input type="email" id="email" placeholder="masukan passwordmu">
 					</div>
 					
 					  <div class="input-box">
 						<span class="details">angkatan</span>
 						
-					  <select class="kombo" id="angkatan">
+					  <select class="kombo" id="status">
                     
 						
                         <option>2019</option>
@@ -422,7 +426,7 @@
 					  </div>
 					  <div class="input-box">
 						<span class="details">Masukan gambar</span>
-						<input type="file" id="gambar">
+						<input type="file" name="gambar">
 					  </div>
 				  </div>
 				  <div class="gender-details">
@@ -439,20 +443,17 @@
 					  <span class="dot two"></span>
 					  <span class="gender">pria</span>
 					</label>
-					<label for="dot-3">
-					  <span class="dot three"></span>
-					  <span class="gender">waria</span>
-					  </label>
+					
 					</div>
 				  </div>
 				  <br>
 				  <span class="hobi">Divisi</span>
 				  
 				  <br>
-				  <input type="checkbox" id="hubungan luar lembaga" name="hubungan luar lembaga" value="hubungan luar lembaga" required>
+				  <input type="checkbox" id="hll" name="divisi" value="hubungan luar lembaga">
 				  <label for="hubungan luar lembaga"> hubungan luar lembaga</label><br>
-				  <input type="checkbox" id="sosial masyarakat" name="sosial masyaraka" value="sosial masyaraka" required>
-				  <label for="sosial masyaraka"> sosial masyarakat</label><br>
+				  <input type="checkbox" id="sosmas" name="divisi" value="sosial masyarakat">
+				  <label for="sosial masyarakat"> sosial masyarakat</label><br>
 				
 				
 				  <div class="button">
@@ -499,6 +500,65 @@
 
     <!-- custom js link -->
     <script src="script.js"></script>
+
+
+	<script>
+		const form = document.getElementById('form')
+		const nama = document.getElementById('nama')
+		const email = document.getElementById('email')
+		const st = document.getElementById('status')
+		const telp = document.getElementById('telp')
+		const alamat = document.getElementById('alamat')
+		const wanita = document.getElementById('dot-1')
+		const pria = document.getElementById('dot-2')
+		const waria = document.getElementById('dot-3')
+		const hobi1 = document.getElementById('hll')
+		const hobi2 = document.getElementById('sosmas')
+		const dataForm = []
+	  
+		form.addEventListener('submit', function(event){
+		  event.preventDefault()
+	  
+		  let hobi1Value = '';
+		  let hobi2Value = '';
+	  
+		  if(hobi1.checked) {
+			hobi1Value = hobi1.value;
+		  }
+		  if(hobi2.checked) {
+			hobi2Value = hobi2.value;
+		  }
+	  
+		  dataForm.push({
+			"Nama": nama.value,
+			"email": email.value,
+			"status": st.value,
+			"telp": telp.value,
+			"alamat": alamat.value,
+			"dot-1": wanita.value,
+			"dot-2": pria.value,
+			"dot-3": waria.value,
+			"hll": hobi1Value,
+			"sosmas": hobi2Value,
+		  })
+	  
+		  let dataUserString = JSON.stringify(dataForm);
+		  sessionStorage.setItem('dataUserKey', dataUserString);
+	  
+		  alert("pendaftaran berhasil")
+		  alert("silakan login dulu untuk melihat data")
+		  window.location.href = "login.html"
+		})
+	  
+		var inputs = document.querySelectorAll('.button_img')
+		for (var i = 0, len = inputs.length; i < len; i++) {
+		  customInput(inputs[i])
+		}
+	  </script>
+	  
+
+
+
 </body>
 
 </html>
